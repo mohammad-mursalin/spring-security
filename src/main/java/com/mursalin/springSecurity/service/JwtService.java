@@ -4,6 +4,7 @@ import com.mursalin.springSecurity.model.Users;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -31,7 +32,7 @@ public class JwtService {
                 .compact();
     }
 
-    private Key key() {
+    private SecretKey key() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
             SecretKey sk = keyGenerator.generateKey();
@@ -44,5 +45,13 @@ public class JwtService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public String getUsername(String token) {
+        return "";
+    }
+
+    public boolean validateToken(String token, UserDetails userDetails) {
+        return true;
     }
 }
